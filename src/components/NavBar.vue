@@ -2,9 +2,11 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" @click="routeTo('/helloworld')">HelloWorld</a>
+                <a class="navbar-item" @click="routeTo('/home')">Home</a>
 
-                <a class="navbar-item">Project</a>
+                <a class="navbar-item" @click="routeTo('/sorting')">Sorting algorithms</a>
+
+                <a class="navbar-item">Pathfinding algorithms</a>
             </div>
         </div>
     </nav>

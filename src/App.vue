@@ -1,18 +1,18 @@
 <template>
-    <NavBar />
-    <img alt="Vue logo" src="./assets/logo.png">
-    <router-view />
+    <section>
+        <NavBar id="navbar"/>
+
+        <router-view class="container"/>       
+    </section>
 </template>
 
 <script>
-import HelloWorld from './components/Home.vue'
 import NavBar from './components/NavBar.vue'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
     NavBar
   }
 }
@@ -25,5 +25,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#navbar {
+    margin-bottom: 1rem;
 }
 </style>
