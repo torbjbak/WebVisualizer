@@ -2,7 +2,7 @@
     <section>
         <NavBar id="navbar"/>
 
-        <router-view class="container"/>       
+        <router-view class="container"/>    
     </section>
 </template>
 
@@ -10,11 +10,11 @@
 import NavBar from './components/NavBar.vue'
 
 export default {
-  name: 'App',
+    name: 'App',
 
-  components: {
-    NavBar
-  }
+    components: {
+        NavBar
+    }
 }
 </script>
 

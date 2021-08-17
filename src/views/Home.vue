@@ -32,10 +32,11 @@
 
 <script>
 export default {
-  name: 'Home',
-  props: {
-    msg: String
-  }
+    name: 'Home',
+    
+    props: {
+        msg: String
+    }
 }
 </script>
 
