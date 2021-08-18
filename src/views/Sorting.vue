@@ -1,8 +1,8 @@
 <template>
     <section class="container">
         <div class="buttons">
-            <button class="button is-primary">Insertion sort</button>
-            <button class="button is-primary">Quicksort</button>
+            <button class="button is-primary" :disabled="sorting">Insertion sort</button>
+            <button class="button is-primary" :disabled="sorting">Quicksort</button>
         </div>
 
         <div class="field has-addons">
@@ -10,16 +10,28 @@
                 <input id="nrDataPoints" class="input is-rounded" type="number" v-model="nrDataPoints" placeholder="Nr of data points">
             </div>
             <div class="control">
-                <a class="button is-rounded is-info" @click="randomData()">Fill chart!</a>
+                <a class="button is-rounded is-info" @click="randomData()">Fill chart</a>
+            </div>
+            <div class="control">
+                <a class="button is-rounded is-primary" @click="sort()">Sort</a>
             </div>
         </div>
 
-        <BarChart :dataObject="dataObject" />
+        <div class="chart container">
+            <div class="element" v-for="i in dataObject" :key="i.name">
+                <Bar 
+                    :name="i.name"
+                    :value="i.value"
+                    :barNr="Object.keys(dataObject).length"
+                />
+            </div>
+        </div>
     </section>
 </template>
 
 <script>
 import BarChart from '@/components/BarChart.vue'
+import Bar from '@/components/Bar.vue'
 import { reactive, ref } from 'vue'
 
 
@@ -27,7 +39,8 @@ export default {
     name: 'Sorting',
 
     components: {
-        BarChart
+        BarChart,
+        Bar
     },
 
     setup () {
@@ -35,28 +48,41 @@ export default {
 
         const dataObject = reactive({})
 
-        const makeARandomNumber = function(){
-            return Math.floor(Math.random() * 20);
+        const sorting = ref(false)
+
+        const sort = function() {
+            sorting.value = !sorting.value
         }
 
         const randomData = function() {
-            var array
+            nrDataPoints.value
+
             if(nrDataPoints.value < 1) {
-                array = Array(1).fill(0).map(makeARandomNumber)
+                nrDataPoints.value = 1
                 console.log("Input too low, set to 1 by default")
-            } else if(nrDataPoints.value > 50) {
-                array = Array(50).fill(0).map(makeARandomNumber)
-                console.log("Input too high, set to 50 by default")
-            } else {
-                array = Array(nrDataPoints.value).fill(0).map(makeARandomNumber)
+            } else if(nrDataPoints.value > 26) {
+                nrDataPoints.value = 26
+                console.log("Input too high, set to 26 by default")
             }
-            dataObject.value = Object.assign({}, array)
+
+            const data = []
+            for(let i = 0; i < nrDataPoints.value; i++) {
+                data.push({
+                    'name': String.fromCharCode(65 + i),
+                    'value': Math.floor(Math.random() * 20 + 1)
+                })
+            }
+            
+            Object.keys(dataObject).forEach(k => delete dataObject[k])
+            Object.assign(dataObject, data)
         }
 
         return {
             nrDataPoints,
             dataObject,
-            randomData
+            randomData, 
+            sorting, 
+            sort
         }
     }
 }
@@ -69,4 +95,21 @@ export default {
 .buttons {
     justify-content: center;
 }
+.chart {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    min-height: 200px;
+    gap: 5px;
+}
+.box {
+    margin-bottom: 0;
+}
+.element {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 </style>
