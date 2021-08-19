@@ -1,8 +1,14 @@
 <template>
     <section class="container">
         <div class="buttons">
-            <button class="button is-primary" :disabled="sorting">Insertion sort</button>
-            <button class="button is-primary" :disabled="sorting">Quicksort</button>
+            <button 
+                class="button is-rounded is-primary"
+                >Insertion sort
+            </button>
+            <button 
+                class="button is-rounded is-primary"
+                >Quicksort
+            </button>
         </div>
 
         <div class="field has-addons">
@@ -18,11 +24,11 @@
         </div>
 
         <div class="chart container">
-            <div class="element" v-for="i in dataObject" :key="i.name">
+            <div class="element" v-for="i in dataArray" :key="i.name">
                 <Bar 
                     :name="i.name"
                     :value="i.value"
-                    :barNr="Object.keys(dataObject).length"
+                    :barNr="dataArray.length"
                 />
             </div>
         </div>
@@ -32,7 +38,8 @@
 <script>
 import BarChart from '@/components/BarChart.vue'
 import Bar from '@/components/Bar.vue'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
+import { insertionSort } from '@/algorithms/InsertionSort.js'
 
 
 export default {
@@ -46,12 +53,17 @@ export default {
     setup () {
         const nrDataPoints = ref()
 
-        const dataObject = reactive({})
+        const dataArray = ref([])
 
         const sorting = ref(false)
 
+        const barColor = ref('')
+
+        const insertActive = ref(true)
+        const quickActive = ref(false)
+
         const sort = function() {
-            sorting.value = !sorting.value
+            insertionSort(dataArray.value)
         }
 
         const randomData = function() {
@@ -72,17 +84,18 @@ export default {
                     'value': Math.floor(Math.random() * 20 + 1)
                 })
             }
-            
-            Object.keys(dataObject).forEach(k => delete dataObject[k])
-            Object.assign(dataObject, data)
+            dataArray.value = data
         }
 
         return {
             nrDataPoints,
-            dataObject,
+            dataArray,
             randomData, 
             sorting, 
-            sort
+            sort,
+            barColor,
+            insertActive,
+            quickActive
         }
     }
 }
@@ -91,6 +104,7 @@ export default {
 <style scoped>
 .field {
     justify-content: center;
+    margin-bottom: 1.5rem;
 }
 .buttons {
     justify-content: center;
@@ -100,7 +114,7 @@ export default {
     display: flex;
     flex-direction: row;
     height: 50%;
-    min-height: 200px;
+    min-height: 300px;
     gap: 5px;
 }
 .box {
@@ -111,5 +125,4 @@ export default {
     flex-direction: column;
     justify-content: flex-end;
 }
-
 </style>

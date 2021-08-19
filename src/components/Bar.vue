@@ -25,7 +25,7 @@ export default {
     computed: {
         barSize() {
             return {
-                height: `${this.value*5}%`,
+                height: `${this.value*4.5}%`,
                 width: `${this.barWidth}px`
             }
         },
