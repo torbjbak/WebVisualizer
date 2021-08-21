@@ -6,7 +6,7 @@
 
                 <a class="navbar-item" @click="routeTo('/sorting')">Sorting algorithms</a>
 
-                <a class="navbar-item" :disabled="true">Pathfinding algorithms</a>
+                <!-- <a class="navbar-item">Pathfinding algorithms</a> -->
             </div>
         </div>
     </nav>

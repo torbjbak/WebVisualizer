@@ -9,7 +9,7 @@
             </button>
             <button 
                 class="button is-rounded is-danger"
-                :disabled="sorting"
+                :disabled="true"
                 @click="selectSort('quick')"
                 >Quicksort
             </button>
@@ -21,7 +21,7 @@
             </button>
             <button 
                 class="button is-rounded is-warning"
-                :disabled="sorting"
+                :disabled="true"
                 @click="selectSort('merge')"
                 >Merge sort
             </button>
