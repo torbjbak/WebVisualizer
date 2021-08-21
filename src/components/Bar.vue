@@ -1,6 +1,8 @@
 <template>
-    <div class="box" :style="barSize"></div>
-    {{ name }}{{ value }}
+    <div class="box" :style="barStyling"></div>
+    <div v-if="barNr<27">
+        {{ name }}
+    </div>
 </template>
 
 <script>
@@ -19,19 +21,24 @@ export default {
         barNr: {
             type: Number,
             required: true,
+        },
+        barColor: {
+            type: String,
+            required: true,
         }
     },
 
     computed: {
-        barSize() {
+        barStyling() {
             return {
                 height: `${this.value*4.5}%`,
-                width: `${this.barWidth}px`
+                width: `${this.barWidth}px`,
+                backgroundColor: `${this.barColor}`
             }
         },
         barWidth() {
             if(this.barNr > 10) {
-                return 10 + (400 / this.barNr)
+                return 5 + (400 / this.barNr)
             }
             return 50
         }
@@ -41,7 +48,7 @@ export default {
 
 <style scoped>
 .box {
-    background-color: coral;
-    padding: 5px;
+    padding: 0px;
+    margin-bottom: 0.5rem;
 }
 </style>

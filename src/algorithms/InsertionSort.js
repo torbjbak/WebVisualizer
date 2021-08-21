@@ -4,20 +4,19 @@ const sleep = (delay) => new Promise(
 
 export const insertionSort = async(array) => {
     let temp
-    let sorted = false
-    let moveCount = 0
-    while(!sorted) {
-        sorted = true
-        for(let i = 1; i < array.length; i++) {
-            if(array[i].value < array[i - 1].value) {
-                await sleep(350)
-                temp = array[i]
-                array[i] = array[i - 1]
-                array[i - 1] = temp
-                sorted = false
+    let checkCount = 0
+    let timeout = 25 + (1500 / array.length)
+
+    for(let i = 1; i < array.length; i++) {
+        for(let j = i; j > 0; j--) {
+            if(array[j].value < array[j - 1].value) {
+                await sleep(timeout)
+                temp = array[j]
+                array[j] = array[j - 1]
+                array[j - 1] = temp
             }
-            moveCount++
+            checkCount++
         }
     }
-    console.log("Insertion sorted after " + moveCount + " checks (n=" + array.length + ")")
+    return checkCount
 }
