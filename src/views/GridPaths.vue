@@ -19,7 +19,7 @@
                 <a class="button is-rounded is-link" @click="initGrid()">Fill grid</a>
             </div>
             <div class="control">
-                <a class="button is-rounded is-dark">Sort</a>
+                <a class="button is-rounded is-dark" @click="findPaths()">Find paths</a>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             <div class="row" v-for="n in matrix" :key="n">
                 <div class="square" v-for="m in n" :key="m">
                     <Square
-                        :squareColor="'#FF7F50'"
+                        :colorCode="m"
                     />
                 </div>
             </div>
@@ -42,6 +42,7 @@
 <script>
 import Square from '@/components/Square.vue'
 import { ref } from 'vue'
+import { gridPaths } from '@/algorithms/GridPaths.js'
 
 export default {
     name: 'GridPaths',
@@ -76,9 +77,11 @@ export default {
             }
 
             matrix.value = new Array(n.value).fill(0).map(() => new Array(m.value).fill(0))
-            console.log("n: ", n.value)
-            console.log("m: ", m.value)
-            console.log(matrix.value)
+        }
+
+        const findPaths = async() => {
+            let pathCount = await gridPaths(matrix.value)
+            infoText.value = "Found " + pathCount + " paths for a " + n.value + "x" + m.value + " grid"
         }
 
         return {
@@ -86,7 +89,8 @@ export default {
             m,
             infoText,
             matrix,
-            initGrid
+            initGrid,
+            findPaths
         }
     }
 }
@@ -104,16 +108,13 @@ export default {
     justify-content: center;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-}
-.box {
-    margin-bottom: 0;
+    gap: 0.25rem;
 }
 .row {
     justify-content: center;
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 0.25rem;
 }
 .square {
     padding: 0;

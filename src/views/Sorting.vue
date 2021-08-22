@@ -177,9 +177,6 @@ export default {
     min-height: 300px;
     gap: 5px;
 }
-.box {
-    margin-bottom: 0;
-}
 .element {
     display: flex;
     flex-direction: column;
