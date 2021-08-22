@@ -1,18 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router"
 import Home from "@/views/Home.vue"
 import Sorting from "@/views/Sorting.vue"
+import GridPaths from "@/views/GridPaths.vue"
 
 
 const routes = [
     {
         path: "/home",
         name: "Home",
-        component: Home,
+        component: Home
     },
     {
         path: "/sorting",
         name: "Sorting",
-        component: Sorting,
+        component: Sorting
+    },
+    {
+        path: "/gridpaths",
+        name: "GridPaths",
+        component: GridPaths
     },
     {
         path: "/",
