@@ -9,7 +9,7 @@
             </button>
             <button 
                 class="button is-rounded is-danger"
-                :disabled="true"
+                :disabled="sorting"
                 @click="selectSort('quick')"
                 >Quicksort
             </button>
@@ -132,7 +132,8 @@ export default {
                     infoText.value = "Bubble sorted after " + checkCount + " checks (n = " + nrDataPoints.value + ")"
                     break
                 case "quick":
-                    checkCount = await quicksort(dataArray.value)
+                    let length = dataArray.value.length
+                    checkCount = await quicksort(dataArray.value, 0, length - 1, length)
                     infoText.value = "Quicksorted after " + checkCount + " checks (n = " + nrDataPoints.value + ")"
                     break
                 case "insertion":
