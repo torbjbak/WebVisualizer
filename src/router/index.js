@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import Home from "@/views/Home.vue"
 import Sorting from "@/views/Sorting.vue"
 import GridPaths from "@/views/GridPaths.vue"
+import GameOfLife from "@/views/GameOfLife.vue"
 
 
 const routes = [
@@ -19,6 +20,11 @@ const routes = [
         path: "/gridpaths",
         name: "GridPaths",
         component: GridPaths
+    },
+    {
+        path: "/gameoflife",
+        name: "GameOfLife",
+        component: GameOfLife
     },
     {
         path: "/",

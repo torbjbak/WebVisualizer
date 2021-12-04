@@ -1,12 +1,14 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarBasicExample" class="navbar-menu is-active">
             <div class="navbar-start">
                 <a class="navbar-item" @click="routeTo('/home')">Home</a>
 
                 <a class="navbar-item" @click="routeTo('/sorting')">Sorting algorithms</a>
 
                 <a class="navbar-item" @click="routeTo('/gridpaths')">Pathfinding grid</a>
+            
+                <a class="navbar-item" @click="routeTo('/gameoflife')">Game of Life</a>
             </div>
         </div>
     </nav>

@@ -3,7 +3,7 @@
         <div class="buttons">
             <button 
                 class="button is-rounded is-info"
-                >Button
+                >Dijkstra
             </button>
 
         </div>
@@ -159,15 +159,15 @@ export default {
                 infoText.value = "No valid path found!"
             else {
                 showPath(path)
-                infoText.value = "Found path with length " + path.length
+                infoText.value = "Found path with length " + (path.length + 1)
             }
             start.value.x = 0
             start.value.y = 0
         }
 
         const showPath = function(path) {
-            for(let i = 0; i < path.length; i++) {
-                matrix.value[path[i].x][path[i].y].type = 5
+            for(let item of path) {
+                matrix.value[item.x][item.y].type = 5
             }
         }
 
