@@ -12,10 +12,11 @@ export const dijkstra = async(grid, startX, startY) => {
     }
 
     let queue = [square]
+    let time = 25 + (1500 / (grid.length + grid[0].length))
 
     while(queue.length > 0) {
         let currentSquare = queue.shift()
-        await sleep(grid.length + grid[0].length)
+        await sleep(time)
 
         for(let i = 0; i <= 3; i++) {
             let newSquare = explore(currentSquare, i, grid)

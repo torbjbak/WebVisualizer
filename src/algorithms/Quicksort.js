@@ -1,6 +1,6 @@
 import { sleep } from "../utils/Sleep"
 
-export const quicksort = async(array, left, right, maxLength) => {
+export const quicksort = async(array, left, right, fullLength) => {
     let length = array.length
 
     if(length <= 1) {
@@ -8,22 +8,23 @@ export const quicksort = async(array, left, right, maxLength) => {
     }
 
     let checkCount = 0
+    let time = 25 + (1500 / fullLength)
 
-    let part = await partition(array, left, right, maxLength); //index returned from partition
+    let part = await partition(array, left, right, time); //index returned from partition
     let index = part[0]
     checkCount += part[1]
 
     if (left < index - 1) { //more elements on the left side of the pivot
-        checkCount += await quicksort(array, left, index - 1, maxLength)
+        checkCount += await quicksort(array, left, index - 1, fullLength)
     }
     if (index < right) { //more elements on the right side of the pivot
-        checkCount += await quicksort(array, index, right, maxLength)
+        checkCount += await quicksort(array, index, right, fullLength)
     }
 
     return checkCount
 }
 
-const partition = async(array, left, right, maxLength) => {
+const partition = async(array, left, right, time) => {
     let checkCount = 0
 
     var pivot   = array[Math.floor((right + left) / 2)].value,
@@ -41,7 +42,7 @@ const partition = async(array, left, right, maxLength) => {
         }
         if (i <= j) {
             checkCount++
-            await sleep(maxLength / 2)
+            await sleep(time)
             swap(array, i, j)
             i++
             j--

@@ -2,17 +2,13 @@
     <section class="container">
         <div class="field has-addons">
             <div class="control">
-                <a class="button is-rounded is-link" @click="initGrid()">Fill grid</a>
+                <a class="button is-rounded is-link" @click="initGrid()">Reset grid</a>
             </div>
 
             <div class="control">
                 <a class="button is-rounded is-dark" @click="startClick()">
                     {{ buttonName }}
                 </a>
-            </div>
-
-            <div class="control">
-                <a class="button is-rounded is-link" @click="initGrid()">Reset</a>
             </div>
         </div>
 
@@ -57,22 +53,36 @@ export default {
             buttonName.value = "Start"
 
             matrix.value = new Array()
-            for(let i = 0; i < 30; i++) {
+            for(let i = 0; i < 50; i++) {
                 matrix.value.push([])
-                for(let j = 0; j < 40; j++) {
-                    matrix.value[i].push(new PixelClass(i, j, false))
+                for(let j = 0; j < 50; j++) {
+                    matrix.value[i].push(new PixelClass(i, j, false, false))
+                }
+            }
+        }
+
+        // Ugly solution, unable to stop async gameOfLife func without reseting grid matrix..
+        const pauseGrid = function() {
+            running.value = false
+            buttonName.value = "Start"
+
+            let temp = matrix.value
+            matrix.value = new Array()
+            for(let i = 0; i < 50; i++) {
+                matrix.value.push([])
+                for(let j = 0; j < 50; j++) {
+                    matrix.value[i].push(new PixelClass(i, j, temp[i][j].alive, false))
                 }
             }
         }
 
         const startClick = async() => {
             if(running.value) {
-                buttonName.value = "Start"
-                running.value = false
+                pauseGrid()
             } else {
                 buttonName.value = "Pause"
                 running.value = true
-                await gameOfLife(matrix.value, running.value)
+                await gameOfLife(matrix.value)
             }
         }
 

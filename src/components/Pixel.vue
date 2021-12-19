@@ -26,8 +26,8 @@ export default {
 
 <style scoped>
 .pixel {
-    height: 0.5rem;
-    width: 0.5rem;
+    height: 0.6rem;
+    width: 0.6rem;
     display: table-cell;
     vertical-align: middle;
 }
