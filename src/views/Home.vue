@@ -1,19 +1,44 @@
 <template>
     <div class="card">
+         <div class="card-image">
+            <figure class="image is-128x128">
+                <img src='@/assets/portrait.jpg'>
+            </figure>
+        </div>
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
                     <p class="title is-4">Torbjørn Bakke</p>
-                    <p class="subtitle is-6">tbakke93@gmail.com</p>
-                    <p class="subtitle is-6">+47 413 33 588</p>
+                    
+                    <p class="subtitle is-6">
+                        <font-awesome-icon icon="at" />
+                        tbakke93@gmail.com
+                    </p>
+                    <p class="subtitle is-6">
+                        <font-awesome-icon icon="phone" />
+                        +47 413 33 588
+                    </p>
+                    <p class="subtitle is-6">
+                        <font-awesome-icon :icon="['fab', 'github']" />
+                        <a href="https://github.com/torbjbak"> github.com/torbjbak</a>
+                    </p>
+                    <p class="subtitle is-6">
+                        <font-awesome-icon :icon="['fab', 'linkedin']" />
+                        <a href="https://www.linkedin.com/in/tbakke93"> linkedin.com/in/tbakke93</a>
+                    </p>
                 </div>
             </div>
 
             <div class="content">
-                This page is a project page used to host web apps I've been working on in my spare time. 
-                For now, there are only some simple visualizations of sorting algorithms.
+                Hello, my name is Torbjørn, I am a computer engineering student at NTNU Trondheim. 
+                I will finish my Bachelor's degree in system development in the spring of 2022.
                 <br>
-                <time>Aug 2021</time>
+                This page is a hobby project page used to host web apps I've been working on in my spare time. 
+                For now, there are some simple visualizations of various algorithms.
+                <br>
+                (The visualization pages have not been formatted for mobile/small screens)
+                <br><br>
+                <time>Dec 2021</time>
             </div>
         </div>
     </div>
@@ -26,7 +51,13 @@ export default {
 </script>
 
 <style scoped>
-.is-6 {
+.subtitle {
     margin: 0;
+}
+.content {
+    text-align: start;
+}
+.image {
+    margin: auto;
 }
 </style>
