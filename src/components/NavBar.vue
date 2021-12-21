@@ -9,6 +9,8 @@
                 <a class="navbar-item" @click="routeTo('/gridpaths')">Pathfinding grid</a>
             
                 <a class="navbar-item" @click="routeTo('/gameoflife')">Game of Life</a>
+
+                <a class="navbar-item" @click="routeTo('/compression')">Compression</a>
             </div>
         </div>
     </nav>

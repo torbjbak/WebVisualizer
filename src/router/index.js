@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue"
 import Sorting from "@/views/Sorting.vue"
 import GridPaths from "@/views/GridPaths.vue"
 import GameOfLife from "@/views/GameOfLife.vue"
+import Compression from "@/views/Compression.vue"
 
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
         path: "/gameoflife",
         name: "GameOfLife",
         component: GameOfLife
+    },
+    {
+        path: "/compression",
+        name: "Compression",
+        component: Compression
     },
     {
         path: "/",
