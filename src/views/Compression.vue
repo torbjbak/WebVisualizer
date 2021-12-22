@@ -23,7 +23,7 @@
             <div class="column">
                 <textarea 
                     class="textarea has-fixed-size" 
-                    rows="9" 
+                    rows="10" 
                     placeholder="Compressed output appears here" 
                     v-model="compOutput"
                     readonly
@@ -45,15 +45,15 @@ export default {
     setup () {
 
         const selectedComp = ref("Huffman")
-        const compInfo = ref("")
+        const compInfo = ref(" ")
         const compInput = ref("Compress this, why don't you?")
         const compOutput = ref("")
 
         const compress = async() => {
-            await huffman(compInput.value, compOutput.value)
+            await huffman(compInput.value, compOutput)
 
-            compInfo.value = "Using " + selectedComp.value + " algorithm, new size is " 
-                + (100 * compOutput.value.length / compInput.value.length).toFixed(2) + "% of original size." 
+            compInfo.value = "Using " + selectedComp.value + " algorithm, new bit count is " 
+                + (100 * compOutput.value.length / (8 * compInput.value.length)).toFixed(2) + "% of original count." 
         }
 
 
