@@ -36,9 +36,12 @@
                 This page is a hobby project page used to host web apps I've been working on in my spare time. 
                 For now, there are some simple visualizations of various algorithms.
                 <br>
-                (The visualization pages have not been formatted for mobile/small screens)
+                (The visualization pages have not yet been formatted for mobile/small screens)
                 <br><br>
-                <time>Dec 2021</time>
+                Repository for this page and its content: 
+                <a href="https://github.com/torbjbak/WebVisualizer"> github.com/torbjbak/WebVisualizer</a>
+                <br><br>
+                <time>Last updated: 4. Jan 2021</time>
             </div>
         </div>
     </div>

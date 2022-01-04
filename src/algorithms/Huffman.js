@@ -21,8 +21,7 @@ export const huffman = function(input) {
         + (100 * binaryString.length / (8 * input.length)).toFixed(2) 
         + "% of original count."
     )
-    console.log(output)
-    console.log(infoText)
+    
     return [output, infoText]
 }
 

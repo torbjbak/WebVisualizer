@@ -100,6 +100,7 @@ export default {
 }
 
 .buttons {
+    margin: auto;
     display: flex;
     flex-direction: column;
 
