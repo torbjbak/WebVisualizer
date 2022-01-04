@@ -1,8 +1,29 @@
-export const huffman = async(input, output) => {
+export const huffman = function(input) {
+    let output = []
+    let infoText = []
+
     const countMap = countChars(input)
+    output.push(countMap.toString())
+    infoText.push("Count map of characters in input string.")
+
     const tree = getTree(countMap)
+    // output.push(tree.toString())
+    // infoText.push("Huffman tree based on count map.")
+
     const codingMap = getCodingMap(tree)
-    output.value = getString(input, codingMap)
+    output.push(codingMap.toString())
+    infoText.push("Encoding map based on Huffman tree.")
+
+    const binaryString = getString(input, codingMap)
+    output.push(binaryString)
+    infoText.push(
+        "New binary string. Using Hoffman algorithm, new bit count is " 
+        + (100 * binaryString.length / (8 * input.length)).toFixed(2) 
+        + "% of original count."
+    )
+    console.log(output)
+    console.log(infoText)
+    return [output, infoText]
 }
 
 class Node {
@@ -78,4 +99,12 @@ const getString = function(input, codingMap) {
         binaryString = binaryString + codingMap[c]
     
     return binaryString
+}
+
+Object.prototype.toString = function() {
+    let str = ""
+    for(const key in this) {
+        str = str + `'${key}':${this[key]},  `
+    }
+    return str
 }

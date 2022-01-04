@@ -14,21 +14,43 @@
                     class="textarea has-fixed-size" 
                     rows="10" 
                     placeholder="Enter an input text to be compressed" 
-                    v-model="compInput"
+                    v-model="input"
                 />
             </div>
             <div class="column is-narrow is-flex">
-                <button class="button is-large is-primary" @click="compress(compInput)">Compress</button>
+                <div class="buttons">
+                    <div class="arrows">
+                        <button 
+                            class="button is-large is-primary"
+                            :disabled="!hasRun || outputIndex <= 0"
+                            @click="outputIndex = outputIndex - 1"
+                            >&#8592;
+                        </button>
+                        <button 
+                            class="button is-large is-primary"
+                            :disabled="!hasRun || outputIndex >= 2"
+                            @click="outputIndex = outputIndex + 1"
+                            >&#8594;
+                        </button>
+                    </div>
+
+                    <button 
+                        class="button is-large is-primary"
+                        :disabled="input == ''"
+                        @click="compress()"
+                        >Compress
+                    </button>
+                </div>
             </div>
             <div class="column">
                 <textarea 
                     class="textarea has-fixed-size" 
                     rows="10" 
                     placeholder="Compressed output appears here" 
-                    v-model="compOutput"
+                    v-model="output[outputIndex]"
                     readonly
                 />
-                <div class="block">{{ compInfo }}</div>
+                <div class="block">{{ infoText[outputIndex] }}</div>
             </div>
         </div>
         
@@ -43,25 +65,29 @@ export default {
     name: 'Compression',
 
     setup () {
-
         const selectedComp = ref("Huffman")
-        const compInfo = ref(" ")
-        const compInput = ref("Compress this, why don't you?")
-        const compOutput = ref("")
+        const input = ref("Compress this, why don't you?")
+        const output = ref([])
+        const infoText = ref([])
+        const outputIndex = ref(0)
+        const hasRun = ref(false)
 
-        const compress = async() => {
-            await huffman(compInput.value, compOutput)
+        const compress = function() {
+            let out = huffman(input.value)
+            output.value = out[0]
+            infoText.value = out[1]
 
-            compInfo.value = "Using " + selectedComp.value + " algorithm, new bit count is " 
-                + (100 * compOutput.value.length / (8 * compInput.value.length)).toFixed(2) + "% of original count." 
+            outputIndex.value = 0
+            hasRun.value = true
         }
-
 
         return {
             selectedComp,
-            compInfo,
-            compInput,
-            compOutput,
+            input,
+            output,
+            infoText,
+            outputIndex,
+            hasRun,
             compress
         }
     }
@@ -72,7 +98,14 @@ export default {
 .buttons {
     justify-content: center;
 }
-.columns button {
-    margin: auto;
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+
+}
+.arrows {
+    display: flex;
+    flex-direction: row;
 }
 </style>
