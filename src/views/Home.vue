@@ -41,7 +41,7 @@
                 Repository for this page and its content: 
                 <a href="https://github.com/torbjbak/WebVisualizer"> github.com/torbjbak/WebVisualizer</a>
                 <br><br>
-                <time>Last updated: 4. Jan 2021</time>
+                <time>Last updated: 4. Jan 2022</time>
             </div>
         </div>
     </div>
